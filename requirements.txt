@@ -1,0 +1,16 @@
+# PYTHON VERSION 3.7.0
+flask
+opencv-python
+numpy
+roboflow
+supervision
+
+scikit-learn
+scikit-image
+unzip
+joblib
+pandas
+matplotlib
+natsort
+
+gunicorn

@@ -1,0 +1,114 @@
+body {
+    background: linear-gradient(135deg, #ffafbd, #ffc3a0);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+}
+
+.upload-card {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    padding: 30px;
+    width: 90%;
+    max-width: 600px;
+    transition: transform 0.3s;
+}
+
+.upload-card:hover {
+    transform: translateY(-5px);
+}
+
+h2 {
+    text-align: center;
+    color: #ff6f61;
+    margin-bottom: 20px;
+}
+
+.form-control, .form-select {
+    border-radius: 10px;
+    border: 1px solid #ff6f61;
+    transition: border-color 0.3s;
+    margin-bottom: 15px; /* Add gap between inputs */
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: #ff6f61;
+    box-shadow: 0 0 5px rgba(255, 111, 97, 0.5);
+}
+
+.upload-btn {
+    background: linear-gradient(135deg, #ff6f61, #de6a4d);
+    border: none;
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+    transition: background 0.3s, transform 0.3s;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 10px; /* Add gap above the button */
+}
+
+.upload-btn:hover {
+    background: linear-gradient(135deg, #de6a4d, #ff6f61);
+    transform: translateY(-3px);
+}
+
+.file-input {
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 15px; /* Add gap below the file input */
+}
+
+.file-input input[type="file"] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.file-input label {
+    display: block;
+    padding: 10px;
+    border: 1px solid #ff6f61;
+    border-radius: 10px;
+    text-align: center;
+    background: #f8f9fa;
+    transition: background 0.3s;
+}
+
+.file-input label:hover {
+    background: #e2e6ea;
+}
+
+.image-name {
+    text-align: center;
+    margin-top: 10px;
+    color: #6a11cb;
+    font-weight: bold;
+}
+
+.loading {
+    display: none;
+    text-align: center;
+    margin-top: 20px;
+}
+
+@media (max-width: 576px) {
+    .upload-card {
+        width: 95%;
+        padding: 20px; /* Adjust padding for smaller screens */
+    }
+
+    h2 {
+        font-size: 1.5rem; /* Adjust heading size for smaller screens */
+    }
+
+    .form-control, .form-select, .upload-btn {
+        font-size: 0.9rem; /* Adjust font size for smaller screens */
+    }
+}

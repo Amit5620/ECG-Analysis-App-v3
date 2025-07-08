@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | ECG Analysis</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style-login.css') }}">
+
+</head>
+<body>
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="card shadow-lg animate__animated animate__fadeInDown">
+            <div class="card-header">ECG Analysis - Login</div>
+            <div class="card-body">
+                <p class="text-center text-dark">Access AI-powered ECG diagnostics</p>
+                {% if error %}
+                <div class="alert alert-danger text-center animate__animated animate__shakeX" role="alert">
+                    {{ error }}
+                </div>
+                {% endif %}
+                <form action="{{ url_for('login') }}" method="post">
+                    <div class="mb-3">
+                        <label class="form-label text-dark">Username</label>
+                        <input type="text" name="username" class="form-control" placeholder="Enter Username" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label text-dark">Password</label>
+                        <input type="password" name="password" class="form-control" placeholder="Enter Password" required>
+                    </div>
+                    <button type="submit" class="btn btn-custom w-100 text-white">Login</button>
+                </form>
+                <div class="social-login">
+                    <button class="btn btn-light social-btn">Login with Google</button>
+                    <button class="btn btn-light social-btn">Login with Facebook</button>
+                </div>
+                <div class="forgot-password">
+                    <a href="#" class="text-light">Forgot Password?</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

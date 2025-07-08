@@ -1,0 +1,73 @@
+body {
+    background: linear-gradient(135deg, #ffafbd, #ffc3a0);
+    font-family: 'Arial', sans-serif;
+    color: #333;
+    padding-bottom: 40px;
+}
+
+.container {
+    max-width: 1100px;
+    margin: auto;
+    margin-top: 20px;
+    background: white;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+h2 {
+    color: #ff6f61;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+h3 {
+    color: #de6a4d;
+    margin-top: 40px;
+    margin-bottom: 15px;
+}
+
+.patient-details, .prediction-results, .data-section, .ecg-stages {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+    margin-top: 25px;
+}
+
+.table th, .table td {
+    text-align: center;
+    font-size: 13px;
+}
+
+.table thead {
+    background-color: #ff6f61;
+    color: white;
+}
+
+img {
+    border-radius: 10px;
+    width: 100%;
+    height: auto;
+}
+
+.btn {
+    background: linear-gradient(135deg, #ff6f61, #de6a4d);
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 6px;
+    margin: 8px;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+
+.btn:hover {
+    background: linear-gradient(135deg, #de6a4d, #ff6f61);
+    color: white;
+}
+
+.download-section {
+    margin-top: 15px;
+    text-align: center;
+}

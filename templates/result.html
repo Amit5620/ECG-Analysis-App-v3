@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ECG Prediction Result</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style-result.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h2 class="text-center">🩺 ECG Analysis Result</h2>
+
+        <!-- Patient Information -->
+        <div class="patient-details mt-4">
+            <h4>👤 Patient Details</h4>
+            <p><strong>Name:</strong> {{ patient_name }}</p>
+            <p><strong>Age:</strong> {{ patient_age }}</p>
+            <p><strong>Gender:</strong> {{ patient_gender }}</p>
+            <p><strong>ID:</strong> {{ patient_id }}</p>
+            <p><strong>Doctor:</strong> {{ doctor_name }}</p>
+            <p><strong>Symptoms:</strong> {{ patient_symptoms }}</p>
+        </div>
+
+        <!-- Upload Image -->
+        <div class="section prediction-results">
+            <h3>🧠 Upload Image by the Patient</h3>
+            <h5><strong>UPLOAD DATA:</strong> ECG Image of Patient</h5>
+            <img src="{{ url_for('serve_uploads_file', filename=original) }}" class="img-fluid" alt="Deep Learning Prediction 1">
+
+            <div class="download-section">
+                <a href="{{ url_for('serve_uploads_file', filename=original) }}" class="btn" download>Download Image 1</a>
+            </div>
+
+        </div>
+
+
+
+        <!-- Section: Deep Learning -->
+        <div class="section prediction-results">
+            <h3>🧠 Analysis by Deep Learning</h3>
+            <h5><strong>Prediction:</strong> {{ predicted_classes1 }}</h5>
+            <img src="{{ url_for('serve_process_file', filename=pred1.split('/')[-1]) }}" class="img-fluid" alt="Deep Learning Prediction 1">
+
+            <div class="download-section">
+                <a href="{{ url_for('serve_process_file', filename=pred1.split('/')[-1]) }}" class="btn" download>Download Image 1</a>
+            </div>
+
+            <img src="{{ url_for('serve_process_file', filename=pred2.split('/')[-1]) }}" class="img-fluid mt-3" alt="Deep Learning Prediction 2">
+
+            <div class="download-section">
+                <a href="{{ url_for('serve_process_file', filename=pred2.split('/')[-1]) }}" class="btn" download>Download Image 2</a>
+            </div>
+        </div>
+
+
+
+        <!-- Section: Machine Learning -->
+        <div class="section prediction-results">
+            <h3>⚙️ Analysis by Machine Learning</h3>
+            <h5><strong>Prediction:</strong> {{ ecg_prediction }}</h5>
+
+            <div class="ecg-stages mt-4">
+                <h4>📈 ECG Processing Pipeline</h4>
+
+                <h6>Grayscale Image</h6>
+                <img src="{{ url_for('serve_process_file', filename=ecg_outputs.gray.split('/')[-1]) }}" class="img-fluid mb-3">
+
+                <h6>Divided Leads (1–12)</h6>
+                <img src="{{ url_for('serve_process_file', filename=ecg_outputs.lead_12.split('/')[-1]) }}" class="img-fluid mb-3">
+
+                <h6>Long Lead (13)</h6>
+                <img src="{{ url_for('serve_process_file', filename=ecg_outputs.lead_13.split('/')[-1]) }}" class="img-fluid mb-3">
+
+                <h6>Preprocessed Leads (1–12)</h6>
+                <img src="{{ url_for('serve_process_file', filename=ecg_outputs.preprocessed_12.split('/')[-1]) }}" class="img-fluid mb-3">
+
+                <h6>Preprocessed Long Lead (13)</h6>
+                <img src="{{ url_for('serve_process_file', filename=ecg_outputs.preprocessed_13.split('/')[-1]) }}" class="img-fluid mb-3">
+
+                <h6>Contour Plot (1–12)</h6>
+                <img src="{{ url_for('serve_process_file', filename=ecg_outputs.contour.split('/')[-1]) }}" class="img-fluid mb-3">
+            </div>
+
+            <div class="data-section mt-5">
+                <h5>📊 1D Signal (Flattened)</h5>
+                <div class="table-responsive">
+                    <table class="table table-bordered table-sm table-striped">
+                        <thead class="table-dark">
+                            <tr>
+                                {% for col in ecg_1d_signal.columns %}
+                                <th>{{ col }}</th>
+                                {% endfor %}
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for row in ecg_1d_signal.itertuples(index=False) %}
+                            <tr>
+                                {% for value in row %}
+                                <td>{{ value }}</td>
+                                {% endfor %}
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+
+                <h5 class="mt-4">📉 Dimensionality Reduced Signal (PCA)</h5>
+                <div class="table-responsive">
+                    <table class="table table-bordered table-sm table-striped">
+                        <thead class="table-dark">
+                            <tr>
+                                {% for col in ecg_reduced.columns %}
+                                <th>{{ col }}</th>
+                                {% endfor %}
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for row in ecg_reduced.itertuples(index=False) %}
+                            <tr>
+                                {% for value in row %}
+                                <td>{{ value }}</td>
+                                {% endfor %}
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Navigation -->
+        <div class="buttons text-center mt-5">
+            <a href="{{ url_for('dashboard') }}" class="btn">🏠 Go to Home</a>
+            <a href="{{ url_for('upload') }}" class="btn">📤 New Prediction</a>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

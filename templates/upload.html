@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload ECG Image</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style-upload.css') }}">
+
+</head>
+<body>
+    <div class="upload-card">
+        <h2>Upload ECG Image</h2>
+        <form id="uploadForm" action="{{ url_for('predict') }}" method="post" enctype="multipart/form-data">
+            <input type="text" name="patient_name" class="form-control" placeholder="Patient Name" required>
+            <input type="number" name="patient_age" class="form-control" placeholder="Patient Age" required>
+            <select name="patient_gender" class="form-select" required>
+                <option value="" disabled selected>Select Gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+            </select>
+            <input type="text" name="patient_id" class="form-control" placeholder="Patient ID" required>
+            <input type="text" name="doctor_name" class="form-control" placeholder="Referring Doctor's Name" required>
+            <textarea name="patient_symptoms" class="form-control" placeholder="Enter Symptoms (if any)" rows="4"></textarea>
+            
+            <div class="file-input">
+                <label for="fileInput">Choose ECG Image</label>
+                <input type="file" name="file" id="fileInput" required>
+            </div>
+            
+            <div class="image-name" id="imageName"></div>
+            <button type="submit" class="upload-btn">Predict</button>
+            <div class="loading" id="loading">
+                <p>Processing... Please wait.</p>
+                <div class="spinner-border" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Display the name of the uploaded file
+        const fileInput = document.getElementById('fileInput');
+        const imageNameDisplay = document.getElementById('imageName');
+    
+        fileInput.addEventListener('change', function() {
+            const fileName = this.files[0] ? this.files[0].name : 'No file chosen';
+            imageNameDisplay.textContent = fileName;
+        });
+    
+        // Handle form submission and show loading animation
+        const uploadForm = document.getElementById('uploadForm');
+        const loading = document.getElementById('loading');
+    
+        uploadForm.addEventListener('submit', function(event) {
+            loading.style.display = 'block'; // Show loading animation
+        });
+    </script>
+</body>
+</html>
