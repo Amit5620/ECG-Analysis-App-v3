@@ -5,6 +5,13 @@ This web-based **ECG Analysis Application** uses **both Deep Learning and Machin
 
 ---
 
+
+### 🌐 **Live App**: [https://ecg-analysis-app-v3.onrender.com](https://ecg-analysis-app-v3.onrender.com)  
+
+### 📁 **GitHub**: [https://github.com/Amit5620/ECG-Analysis-App-v3](https://github.com/Amit5620/ECG-Analysis-App-v3)
+
+---
+
 ## 🚀 Features
 
 - ✅ **Login Authentication** for secure access  
@@ -91,7 +98,7 @@ This web-based **ECG Analysis Application** uses **both Deep Learning and Machin
 ### 🔧 1. Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/ecg-analysis-app.git
+git clone https://github.com/Amit5620/ECG-Analysis-App-v3.git
 cd ecg-analysis-app
 ```
 
